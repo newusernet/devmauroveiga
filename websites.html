@@ -20,6 +20,7 @@
       font-family: 'Montserrat', sans-serif;
       background-image: url('./images/bg.jpg');
       background-size: cover;
+      background-repeat: repeat;
       animation: fadeIn 1s ease-in-out;
     }
 
@@ -161,6 +162,7 @@
       border-radius: 10px;
       animation: slideInFromRight 0.5s ease-in-out;
       transition: all 0.3s ease-in-out;
+      display: none; /* Oculto por padrão */
     }
 
     .whatsapp-icon {
@@ -191,6 +193,27 @@
       transform: scale(1.2);
     }
 
+    /* Loader CSS */
+    #loader {
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      z-index: 1000;
+      width: 120px;
+      height: 120px;
+      margin: -60px 0 0 -60px;
+      border: 16px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 16px solid #3498db;
+      animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Responsividade */
     @media screen and (max-width: 880px) {
       .wrapper {
         width: 50%;
@@ -204,8 +227,12 @@
     }
   </style>
 </head>
-<body>
-  <div class="container">
+<body onload="pageLoad()">
+
+  <!-- Loader -->
+  <div id="loader"></div>
+
+  <div class="container" id="content" style="display:none;">
     <h1 class="header">Modelos de Websites</h1>
     <div class="content">
       <!-- Galeria de imagens -->
@@ -231,7 +258,7 @@
         <div class="box vintage">
           <img src="images/img4.png" alt="EMMYLOU" onclick="openModal(this.src)">
         </div>
-        <a href="img4/advocacia1.html" class="link" target="_blank">Demo do Site</a>
+        <a href="img4/index.html" class="link" target="_blank">Demo do Site</a>
       </div>
       <div class="wrapper">
         <div class="box vintage">
@@ -251,12 +278,12 @@
         </div>
         <a href="img7/index.html" class="link" target="_blank">Demo do Site</a>
       </div>
-      <div class="wrapper">
+      <!--<div class="wrapper">
         <div class="box vintage">
           <img src="images/img8.png" alt="EMMYLOU" onclick="openModal(this.src)">
         </div>
         <a href="img8/siteestilizado.html" class="link" target="_blank">Demo do Site</a>
-      </div>
+      </div>-->
       <div class="wrapper">
         <div class="box vintage">
           <img src="images/img9.png" alt="EMMYLOU" onclick="openModal(this.src)">
@@ -309,25 +336,19 @@
         <div class="box vintage">
           <img src="images/img17.png" alt="EMMYLOU" onclick="openModal(this.src)">
         </div>
-        <a href="img17/index.html" class="link" target="_blank">Demo do Site</a>
+        <a href="img17/texte.html" class="link" target="_blank">Demo do Site</a>
       </div>
-      <!--<div class="wrapper">
-        <div class="box vintage">
-          <img src="images/img18.png" alt="EMMYLOU" onclick="openModal(this.src)">
-        </div>
-        <a href="img18/index.html" class="link" target="_blank">Demo do Site</a>
-      </div>-->
-      <!--<div class="wrapper">
-        <div class="box vintage">
-          <img src="images/img19.png" alt="EMMYLOU" onclick="openModal(this.src)">
-        </div>
-        <a href="img19/index.html" class="link" target="_blank">Demo do Site</a>
-      </div>-->
       <div class="wrapper">
         <div class="box vintage">
-          <img src="images/img20.png" alt="EMMYLOU" onclick="openModal(this.src)">
+          <img src="images/img23.png" alt="EMMYLOU" onclick="openModal(this.src)">
         </div>
-        <a href="img20/index.html" class="link" target="_blank">Demo do Site</a>
+        <a href="img23/index.html" class="link" target="_blank">Demo do Site</a>
+      </div>
+      <div class="wrapper">
+        <div class="box vintage">
+          <img src="images/img22.png" alt="EMMYLOU" onclick="openModal(this.src)">
+        </div>
+        <a href="img22/index.html" class="link" target="_blank">Demo do Site</a>
       </div>
       <div class="wrapper">
         <div class="box vintage">
@@ -344,7 +365,7 @@
   </div>
 
   <!-- Caixa de texto do WhatsApp -->
-  <div class="whatsapp-box">
+  <div class="whatsapp-box" id="whatsapp-box">
     <span class="whatsapp-icon" onclick="openWhatsApp()"></span>
     Gostou do meu trabalho? Me chame no WhatsApp, vamos fazer algo exclusivo para você!
   </div>
@@ -362,6 +383,14 @@
     function openWhatsApp() {
       // Substitua o número de telefone abaixo pelo seu número de WhatsApp
       window.open('https://api.whatsapp.com/send?phone=5551998061961', '_blank');
+    }
+
+    function pageLoad() {
+      setTimeout(function() {
+        document.getElementById('loader').style.display = 'none';
+        document.getElementById('content').style.display = 'block';
+        document.getElementById('whatsapp-box').style.display = 'block'; // Exibir a caixa do WhatsApp
+      }, 2000); // Ajuste o tempo conforme necessário
     }
   </script>
 </body>
