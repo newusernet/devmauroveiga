@@ -1,151 +1,271 @@
+<!doctype html>
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>StarBucks Replica</title>
-        <meta nome="viewport" content="width=device-width", initial-scale="1.0"/>
-        <style type="text/css">
-            *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-html,body{
-    height: 100%;
-    overflow-y: hidden;
-    overflow-x: hidden;
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>teste</title>
+	<style>
+		@import url('https://fonts.googleapis.com/css?family=Encode+Sans+Condensed:400,600');
+
+* {
+  outline: none;
 }
 
-.center{
-    display: flex;
-    flex-wrap: wrap;
-    max-width: 1100px;
-    margin: 0;
-    padding: 0 2%;
+strong {
+  font-weight: 600;
+}
+
+.page {
+  width: 100%;
+  height: 100vh;
+  background-image: url(https://img.freepik.com/vetores-gratis/fundo-de-alimentos-em-estilo-esbocado_23-2148192562.jpg?t=st=1716936735~exp=1716940335~hmac=6597252288f69e1ee2571d519b3201af21bf88e4caf2ba5c0bee82a991b23377&w=740);
+  background-repeat: no-repeat;
+  background-size: cover ;
+  font-family: 'Encode Sans Condensed', sans-serif;
+  font-weight: 600;
+  letter-spacing: .03em;
+  color: #212121;
+}
+
+header {
+  display: flex;
+  position: fixed;
+  width: 100%;
+  height: 70px;
+  background: #212121;
+  color: #fff;
+  justify-content: center;
+  align-items: center;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+main {
+  padding: 70px 20px 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+main > div {
+  margin: auto;
+  max-width: 600px;
+}
+
+main h2 span {
+  color: #BF7497;
+}
+
+main p {
+  line-height: 1.5;
+  font-weight: 200;
+  margin: 20px 0;
+}
+
+main small {
+  font-weight: 300;
+  color: #888;
+}
+
+#nav-container {
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  pointer-events: none;
+}
+#nav-container .bg {
+  position: absolute;
+  top: 70px;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 70px);
+  visibility: hidden;
+  opacity: 0;
+  transition: .3s;
+  background: #000;
+}
+#nav-container:focus-within .bg {
+  visibility: visible;
+  opacity: .6;
+}
+#nav-container * {
+  visibility: visible;
+}
+
+.button {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 1;
+  -webkit-appearance: none;
+  border: 0;
+  background: transparent;
+  border-radius: 0;
+  height: 70px;
+  width: 30px;
+  cursor: pointer;
+  pointer-events: auto;
+  margin-left: 25px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+.icon-bar {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: #aaa;
+  transition: .3s;
+}
+.icon-bar + .icon-bar {
+  margin-top: 5px;
+}
+
+#nav-container:focus-within .button {
+  pointer-events: none;
+}
+#nav-container:focus-within .icon-bar:nth-of-type(1) {
+  transform: translate3d(0,8px,0) rotate(45deg);
+}
+#nav-container:focus-within .icon-bar:nth-of-type(2) {
+  opacity: 0;
+}
+#nav-container:focus-within .icon-bar:nth-of-type(3) {
+  transform: translate3d(0,-8px,0) rotate(-45deg);
+}
+
+#nav-content {
+  margin-top: 70px;
+  padding: 20px;
+  width: 90%;
+  max-width: 300px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: calc(100% - 70px);
+  background: #ececec;
+  pointer-events: auto;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  transform: translateX(-100%);
+  transition: transform .3s;
+  will-change: transform;
+  contain: paint;
+}
+
+#nav-content ul {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#nav-content li a {
+  padding: 10px 5px;
+  display: block;
+  text-transform: uppercase;
+  transition: color .1s;
+}
+
+#nav-content li a:hover {
+  color: #BF7497;
+}
+
+#nav-content li:not(.small) + .small {
+  margin-top: auto;
+}
+
+.small {
+  display: flex;
+  align-self: center;
+}
+
+.small a {
+  font-size: 12px;
+  font-weight: 400;
+  color: #888;
+}
+.small a + a {
+  margin-left: 15px;
+}
+
+#nav-container:focus-within #nav-content {
+  transform: none;
 }
 
 
-header{
-    height: 200px;
-    padding:20px 0;
+
+
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-
-.logo{
-    width: 50%;
-    padding: 10px;
+html, body {
+  height: 100%;
 }
 
-.menu{
-    padding-top: 30px;
-    width: 40%;
-    text-align: right;
+a,
+a:visited,
+a:focus,
+a:active,
+a:link {
+  text-decoration: none;
+  outline: 0;
 }
 
-
-.menu a{
-    color: black;
-    text-decoration: none;
-    font-weight: bold 15px;
-    margin-right: 15px;
+a {
+  color: currentColor;
+  transition: .2s ease-in-out;
 }
 
-section.sobre{
-    height: calc(100% - 265px);
-    position: relative;
+h1, h2, h3, h4 {
+  margin: 0;
 }
 
-.extras{
-    position: absolute;
-    bottom:-450px;
-    right:-500px;
-    width: 1100px;
-    height: 920px;
-    border-radius: 50%;
-    background-color: #017143;
+ul {
+  padding: 0;
+  list-style: none;
 }
 
-.social-media{
-    position: absolute;
-    right: 540px;
-    top: 40px;
+img {
+  vertical-align: middle;
+  height: auto;
+  width: 100%;
 }
+	</style>
+</head>
+<body>
+<div class="page">
+  <header tabindex="0">Bem Vindo</header>
+  <div id="nav-container">
+    <div class="bg"></div>
+    <div class="button" tabindex="0">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div id="nav-content" tabindex="0">
+      <ul>
+        <li><a href="#0">Cardápio</a></li>
+        <li><a href="#0">Promoção</a></li>
+        <li><a href="#0">Comidas</a></li>
+        <li><a href="#0">Bebidas</a></li>
+        <li><a href="#0">Contato</a></li>
+        <li class="small"><a href="#0">Facebook</a><a href="#0">Instagram</a></li>
+      </ul>
+    </div>
+  </div>
 
-.social-media img{
-    display: block;
-    width: 25px;
-    margin: 20px 0;
-}
+  <main>
+    <div class="content">
+      <h2>Nossa Lanchonete Aleatoria <span>:focus-within</span></h2>
+      <p>Adding yet another pure CSS technique to the list of off-screen navigation by "hacking" the :focus-within pseudo-class. Have a look at the code to see how it works.</p>
+      <small><strong>NB!</strong> Use a browser that supports :focus-within</small>
+    </div>
+  </main>
+</div>
 
-.texto-sobre{
-    margin-top: 40px;
-    margin-left: 30px;
-
-}
-
-.texto-sobre h1{
-    font-size: 40px;
-}
-
-.texto-sobre p{
-    margin: 20px 0;
-    color: black;
-    font-size: 14px;
-    font-weight: bold;
-    max-width: 700px;
-    
-
-}
-
-.texto-sobre button{
-    border: 0;
-    background-color: #017143;
-    color: white;
-    border-radius: 10px;
-    width: 100px;
-    height: 40px;
-    cursor: pointer;
-    
-}
-
-        </style>
-    </head>
-       <body>
-<header>
-    <div class="center">
-    <div class="logo"><img src="assets/logo.png"></div>
-    <div class="menu">
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Menu</a>
-        <a href="#">Whats New</a>
-
-
-    </div><!--center-->
-    </div><!--menu-->
-</header>
-<section class="sobre">
-    <div class="extras">
-      <img src="assets/img1.png">
-      <div class="social-media">
-        <a href="https://www.facebook.com/StarbucksBrasil/?locale=pt_BR"><img src="assets/facebook.png"/>
-        <a href="https://www.instagram.com/starbucksbrasil/"><img src="assets/instagram.png"/>
-        <a href=""><img src="assets/twitter.png"/>
-        
-        
-      </div>
-
-
-    </div><!--extras-->
-    <div class="center">
-    <div class="texto-sobre">
-        <h1><span style="color: black;">Replica do Website - Starbucks</span><br/><span style="color: black;"></span> <span style="color: #017143;">StarBucks</span></h1>
-       
-        <p>Lorem ipsum dolor sit amet, quis feugiat lacus elementum. Aliquam eros ligula, porttitor quis lobortis in, tempus et nibh. Duis ut neque et lectus ultrices laoreet ut eu elit. Duis sit amet lacus hendrerit, cursus augue vel, ornare libero. Vestibulum urna orci, feugiat a mi ut, dapibus feugiat mauris. Phasellus ac molestie mauris. Nullam non lorem dapibus, mollis tellus eget, convallis augue. Quisque sed rutrum urna, ut semper tellus. Etiam suscipit tincidunt placerat. Mauris odio erat, rutrum eget hendrerit sit amet, efficitur in lacus. Ut dapibus dolor quis nisi posuere dictum. Nunc semper neque non sollicitudin imperdiet. Ut id tempus tellus. Fusce eu auctor nibh.</p>
-         <button>Learn More</button>
-        </div>
-
-
-</section>
-       </body>
-    
+</body>
 </html>
